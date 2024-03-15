@@ -34,7 +34,7 @@ app.get("/api/flavors/:id", async (req, res, next) => {
 //POST (CREATE) FLAVOR
 app.post("/api/flavors", async (req, res, next) => {
   try {
-    // const flavorTxt = req.body.txt; // Assuming the flavor text is sent in the request body
+   
 
     const SQL = /*SQL*/ `
             INSERT INTO flavors (txt)
@@ -43,7 +43,7 @@ app.post("/api/flavors", async (req, res, next) => {
         `;
 
     const response = await client.query(SQL, [req.body.txt]);
-    res.send(response.rows[0]); // Send the created flavor as the response
+    res.send(response.rows[0]); 
   } catch (error) {
     next(error);
   }
@@ -69,7 +69,7 @@ app.put("/api/flavors/:id", async (req, res, next) => {
     const { text, is_favorite } = req.body;
     const flavorId = req.params.id;
 
-    // Validate incoming data
+   
     if (!text || typeof is_favorite !== "boolean") {
       return res.status(400).send("Invalid request body.");
     }
